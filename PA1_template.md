@@ -88,7 +88,7 @@ sum.spd <- amd[complete.cases(amd), ]%>%
            summarise(steps=sum(steps))
 
 ## Plot the Sum of the Steps per Day
-hist(sum.spd$steps, main = "Steps per day", xlab = "Steps", col = "grey", breaks = 16)
+hist(sum.spd$steps, main = "Steps per day", xlab = "Steps", col = "grey", breaks = 20)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
@@ -237,29 +237,31 @@ sum.imputed | New version of sum.spd but with imputed values
              group_by(date)%>% 
              summarise(steps=sum(steps))
 
-  hist(sum.spd$steps, main = "Steps per day, non-imputed", xlab = "Steps", col = "grey", breaks = 16) 
+  hist(sum.spd$steps, main = "Steps per day, non-imputed", xlab = "Steps", col = "grey", breaks = 18) 
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 ```r
-  hist(sum.imputed$steps, main = "Steps per day, imputed", xlab = "Steps", col = "grey", breaks = 16)
+  hist(sum.imputed$steps, main = "Steps per day, imputed", xlab = "Steps", col = "grey", breaks = 18)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-2.png)<!-- -->
 
 ```r
   rep.values <-cbind(mean(sum.spd$steps), median(sum.spd$steps), mean(sum.imputed$steps), median(sum.imputed$steps))
-  colnames(rep.values) <- c("Mean","Median", "Mean Imputed", "Median Imputed")
+  colnames(rep.values) <- c("Est Mean","Est Median", "Mean Imputed", "Median Imputed")
   pander(rep.values)
 ```
 
 
-------------------------------------------------
- Mean    Median   Mean Imputed   Median Imputed 
-------- -------- -------------- ----------------
- 10766   10765       10821           11015      
-------------------------------------------------
+-------------------------------------------------------
+ Est Mean   Est Median   Mean Imputed   Median Imputed 
+---------- ------------ -------------- ----------------
+  10766       10765         10821           11015      
+-------------------------------------------------------
+
+The missing values reduce the overal frequency ~ 13000 steps per day, although the averages are marginally adjusted upwards.
 
 
 #Are there differences in activity patterns between weekdays and weekends?
